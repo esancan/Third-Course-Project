@@ -30,69 +30,69 @@ read.table("tidyData.txt", header=TRUE)
         4. SITTING
         5. STANDING
         6. LAYING
-3. tBodyAcc-mean-X (numerical)
-4. tBodyAcc-mean-Y (numerical)
-5. tBodyAcc-mean-Z (numerical)
-6. tBodyAcc-std-X (numerical)
-7. tBodyAcc-std-Y (numerical)
-8. tBodyAcc-std-Z (numerical)
-9. tGravityAcc-mean-X (numerical)
-10. tGravityAcc-mean-Y (numerical)
-11. tGravityAcc-mean-Z (numerical)
-12. tGravityAcc-std-X (numerical)
-13. tGravityAcc-std-Y (numerical)
-14. tGravityAcc-std-Z (numerical)
-15. tBodyAccJerk-mean-X (numerical)
-16. tBodyAccJerk-mean-Y (numerical)
-17. tBodyAccJerk-mean-Z (numerical)
-18. tBodyAccJerk-std-X (numerical)
-19. tBodyAccJerk-std-Y (numerical)
-20. tBodyAccJerk-std-Z (numerical)
-21. tBodyGyro-mean-X (numerical)
-22. tBodyGyro-mean-Y (numerical)
-23. tBodyGyro-mean-Z (numerical)
-24. tBodyGyro-std-X (numerical)
-25. tBodyGyro-std-Y (numerical)
-26. tBodyGyro-std-Z (numerical)
-27. tBodyGyroJerk-mean-X (numerical)
-28. tBodyGyroJerk-mean-Y (numerical)
-29. tBodyGyroJerk-mean-Z (numerical)
-30. tBodyGyroJerk-std-X (numerical)
-31. tBodyGyroJerk-std-Y (numerical)
-32. tBodyGyroJerk-std-Z (numerical)
-33. tBodyAccMag-mean (numerical)
-34. tBodyAccMag-std (numerical)
-35. tGravityAccMag-mean (numerical)
-36. tGravityAccMag-std (numerical)
-37. tBodyAccJerkMag-mean (numerical)
-38. tBodyAccJerkMag-std (numerical)
-39. tBodyGyroMag-mean (numerical)
-40. tBodyGyroMag-std (numerical)
-41. tBodyGyroJerkMag-mean (numerical)
-42. tBodyGyroJerkMag-std (numerical)
-43. fBodyAcc-mean-X (numerical)
-44. fBodyAcc-mean-Y (numerical)
-45. fBodyAcc-mean-Z (numerical)
-46. fBodyAcc-std-X (numerical)
-47. fBodyAcc-std-Y (numerical)
-48. fBodyAcc-std-Z (numerical)
-49. fBodyAccJerk-mean-X (numerical)
-50. fBodyAccJerk-mean-Y (numerical)
-51. fBodyAccJerk-mean-Z (numerical)
-52. fBodyAccJerk-std-X (numerical)
-53. fBodyAccJerk-std-Y (numerical)
-54. fBodyAccJerk-std-Z (numerical)
-55. fBodyGyro-mean-X (numerical)
-56. fBodyGyro-mean-Y (numerical)
-57. fBodyGyro-mean-Z (numerical)
-58. fBodyGyro-std-X (numerical)
-59. fBodyGyro-std-Y (numerical)
-60. fBodyGyro-std-Z (numerical)
-61. fBodyAccMag-mean (numerical)
-62. fBodyAccMag-std (numerical)
-63. fBodyBodyAccJerkMag-mean (numerical)
-64. fBodyBodyAccJerkMag-std (numerical)
-65. fBodyBodyGyroMag-mean (numerical)
-66. fBodyBodyGyroMag-std (numerical)
-67. fBodyBodyGyroJerkMag-mean (numerical)
-68. fBodyBodyGyroJerkMag-std (numerical)
+3. tBodyAcc-mean-X
+4. tBodyAcc-mean-Y
+5. tBodyAcc-mean-Z
+6. tBodyAcc-std-X
+7. tBodyAcc-std-Y
+8. tBodyAcc-std-Z
+9. tGravityAcc-mean-X
+10. tGravityAcc-mean-Y
+11. tGravityAcc-mean-Z
+12. tGravityAcc-std-X
+13. tGravityAcc-std-Y
+14. tGravityAcc-std-Z
+15. tBodyAccJerk-mean-X
+16. tBodyAccJerk-mean-Y
+17. tBodyAccJerk-mean-Z
+18. tBodyAccJerk-std-X
+19. tBodyAccJerk-std-Y
+20. tBodyAccJerk-std-Z
+21. tBodyGyro-mean-X
+22. tBodyGyro-mean-Y
+23. tBodyGyro-mean-Z
+24. tBodyGyro-std-X
+25. tBodyGyro-std-Y
+26. tBodyGyro-std-Z
+27. tBodyGyroJerk-mean-X
+28. tBodyGyroJerk-mean-Y
+29. tBodyGyroJerk-mean-Z
+30. tBodyGyroJerk-std-X
+31. tBodyGyroJerk-std-Y
+32. tBodyGyroJerk-std-Z
+33. tBodyAccMag-mean
+34. tBodyAccMag-std
+35. tGravityAccMag-mean
+36. tGravityAccMag-std
+37. tBodyAccJerkMag-mean
+38. tBodyAccJerkMag-std
+39. tBodyGyroMag-mean
+40. tBodyGyroMag-std
+41. tBodyGyroJerkMag-mean
+42. tBodyGyroJerkMag-std
+43. fBodyAcc-mean-X
+44. fBodyAcc-mean-Y
+45. fBodyAcc-mean-Z
+46. fBodyAcc-std-X
+47. fBodyAcc-std-Y
+48. fBodyAcc-std-Z
+49. fBodyAccJerk-mean-X
+50. fBodyAccJerk-mean-Y
+51. fBodyAccJerk-mean-Z
+52. fBodyAccJerk-std-X
+53. fBodyAccJerk-std-Y
+54. fBodyAccJerk-std-Z
+55. fBodyGyro-mean-X
+56. fBodyGyro-mean-Y
+57. fBodyGyro-mean-Z
+58. fBodyGyro-std-X
+59. fBodyGyro-std-Y
+60. fBodyGyro-std-Z
+61. fBodyAccMag-mean
+62. fBodyAccMag-std
+63. fBodyBodyAccJerkMag-mean
+64. fBodyBodyAccJerkMag-std
+65. fBodyBodyGyroMag-mean
+66. fBodyBodyGyroMag-std
+67. fBodyBodyGyroJerkMag-mean
+68. fBodyBodyGyroJerkMag-std
