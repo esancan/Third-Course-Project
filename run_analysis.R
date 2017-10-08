@@ -1,44 +1,63 @@
+# Download and unzip the data in the working directory
+downloadData <- function() {
+  zipName <- "data.zip"
+  download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip", destfile = zipName)
+  unzip(zipName)
+}
 
-#1. Merges the training and the test sets to create one data set
+# Load the feature names from "features.txt" and select the "mean" and "std" features
+loadFeaturesTable <- function(rootPath) {
+  featuresFilePath <- file.path(rootPath, "features.txt")
+  table <- read.table(featuresFilePath, colClasses=c("integer","character"))
+  featuresSel <- grepl("mean\\(\\)", table$V2) | grepl("std\\(\\)", table$V2)
+  table <- table[featuresSel, ]
+  table$V2 <- gsub("\\(\\)", "", table$V2)
+  table
+}
 
-subject_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/subject_test.txt")
-X_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/X_test.txt")
-y_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/y_test.txt")
+# Load the feature names from "features.txt", select the "mean" and "std" features
+loadData <- function(rootPath, featuresTable, dataType) {
+  subjectFilePath <- file.path(rootPath, dataType, paste("subject_", dataType, ".txt", sep=""))
+  subjectTable <- read.table(subjectFilePath, colClasses=c("integer"))
+  xFilePath <- file.path(rootPath, dataType, paste("X_", dataType, ".txt", sep=""))
+  xTable <- read.table(xFilePath)
+  xTable <- xTable[,featuresTable$V1]
+  names(xTable) = featuresTable$V2
+  
+  activities = c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING")
+  yFilePath <- file.path(rootPath, dataType, paste("y_", dataType, ".txt", sep=""))
+  yTable <- read.table(yFilePath, colClasses=c("integer"))
+  
+  for (i in 1:length(activities)) {
+    yTable[yTable$V1 == i,] <- activities[i]
+  }
+  
+  cbind(
+    subject=subjectTable$V1,
+    xTable,
+    activity=yTable$V1
+  )
+}
 
-body_acc_x_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt")
-body_acc_y_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_acc_y_test.txt")
-body_acc_z_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_acc_z_test.txt")
-body_gyro_x_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_gyro_x_test.txt")
-body_gyro_y_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_gyro_y_test.txt")
-body_gyro_z_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/body_gyro_z_test.txt")
-total_acc_x_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/total_acc_x_test.txt")
-total_acc_y_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/total_acc_y_test.txt")
-total_acc_z_test<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/test/Inertial Signals/total_acc_z_test.txt")
+tidyDataTable <- function(dataTable) {
+  # This creates a skinny data set as in:
+  dataMelt <- melt(dataTable, id=c("subject", "activity"))
+  dcast(dataMelt, subject + activity ~ variable, mean)
+}
 
-test<-data.frame("subject_test"=subject_test[1:2947,],"X_test"=X_test[1:2947,], "y_test"=y_test[1:2947,],"body_acc_x_test"=body_acc_x_test[1:2947,],"body_acc_y_test"=body_acc_y_test[1:2947,],"body_acc_z_test"=body_acc_z_test[1:2947,],"body_gyro_x_test"=body_gyro_x_test[1:2947,],"body_gyro_y_test"=body_gyro_y_test[1:2947,],"body_gyro_z_test"=body_gyro_z_test[1:2947,], "total_acc_x_test"=total_acc_x_test[1:2947,], "total_acc_y_test"=total_acc_y_test[1:2947,], "total_acc_z_test"=total_acc_z_test[1:2947,])
+downloadData()
 
+rootPath <- file.path(".", "UCI HAR Dataset")
 
-subject_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/subject_train.txt")
-X_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/X_train.txt")
-y_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/y_train.txt")
+featuresTable <- loadFeaturesTable(rootPath)
 
-body_acc_x_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_acc_x_train.txt")
-body_acc_y_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_acc_y_train.txt")
-body_acc_z_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_acc_z_train.txt")
-body_gyro_x_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_gyro_x_train.txt")
-body_gyro_y_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_gyro_y_train.txt")
-body_gyro_z_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/body_gyro_z_train.txt")
-total_acc_x_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/total_acc_x_train.txt")
-total_acc_y_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/total_acc_y_train.txt")
-total_acc_z_train<-read.table("./course 3/project/getdata_projectfiles_UCI HAR Dataset/UCI HAR Dataset/train/Inertial Signals/total_acc_z_train.txt")
+tstTable <- loadData(rootPath, featuresTable, "test")
+trnTable <- loadData(rootPath, featuresTable, "train")
 
-train<-data.frame("subject_train"=subject_train[1:7352,],"X_train"=X_train[1:7352,], "y_train"=y_train[1:7352,],"body_acc_x_train"=body_acc_x_train[1:7352,],"body_acc_y_train"=body_acc_y_train[1:7352,],"body_acc_z_train"=body_acc_z_train[1:7352,],"body_gyro_x_train"=body_gyro_x_train[1:7352,],"body_gyro_y_train"=body_gyro_y_train[1:7352,],"body_gyro_z_train"=body_gyro_z_train[1:7352,], "total_acc_x_train"=total_acc_x_train[1:7352,], "total_acc_y_train"=total_acc_y_train[1:7352,], "total_acc_z_train"=total_acc_z_train[1:7352,])
+dataTable <- rbind(tstTable, trnTable)
 
-data_set<- merge(test,train)
+tidyTable <- tidyDataTable(dataTable)
 
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
-mean<-apply(data_set, 2, mean)
-sd<-apply(data_set, 2, mean)
+write.table(tidyTable, "tidyData.txt", row.names=FALSE)
 
-# 5 From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-second_data_set<- merge(mean,sd)
+str(tidyTable)
