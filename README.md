@@ -1,14 +1,16 @@
+# ADLTidyData
 
-Variable test: data frame having all measurements related to test.
+This scripts generates a tidy dataset from the ["Human Activity Recognition Using Smartphones Data Set"](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
 
-Columns name: subject_test,X_test.x1,...,X_test.x561,y_test,body_acc_x_test.x1,...,body_acc_x_test.x64,body_acc_y_test.x1,...,body_acc_y_test.x64,body_acc_z_test.x1,...,body_acc_z_test.x64,body_gyro_x_test.x1,...,body_gyro_x_test.x64,body_gyro_y_test.x1,...,body_gyro_y_test.x64,body_gyro_z_test.x1,...,body_gyro_z_test.x64,total_acc_x_test.x1,...,total_acc_x_test.x64,total_acc_y_test.x1,...,total_acc_y_test.x64,total_acc_z_test.x1,...,total_acc_z_test.x64
 
-Variable train: data frame having all measurements related to training.
+## Running the script
 
-Columns name: subject_train,X_train.x1,...,X_train.x561,y_train,body_acc_x_train.x1,...,body_acc_x_train.x64,body_acc_y_train.x1,...,body_acc_y_train.x64,body_acc_z_train.x1,...,body_acc_z_train.x64,body_gyro_x_train.x1,...,body_gyro_x_train.x64,body_gyro_y_train.x1,...,body_gyro_y_train.x64,body_gyro_z_train.x1,...,body_gyro_z_train.x64,total_acc_x_train.x1,...,total_acc_x_train.x64,total_acc_y_train.x1,...,total_acc_y_train.x64,total_acc_z_train.x1,...,total_acc_z_train.x64
+Run `source("run_analysis.R")` in R
 
-Variable data_set: Merge of test and train.
-Variable mean: Average of data_set.
-Variable sd: Standard desviation of data_Set.
+The `tidyData.txt` file contains all the features of the original dataset that represents mean and standard deviation for each subject id and activity. But, features values belonging to the same unique subject id/actitivity pair are grouped together with a mean operation.
 
-second_data_set: Merge of mean and sd.
+For a detailed description of this table, see the included `CookBook.md`.
+
+## Understanding step by step how the `tidyData.txt` was generated
+
+Please, see the accompanying `run_analysis.R` script for a step by step instruction on how this dataset was generated. The provided script contains comments and descriptive variables names to walk you through the steps taken to generate this dataset.
